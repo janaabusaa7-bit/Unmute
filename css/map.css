@@ -1,0 +1,491 @@
+:root {
+    --blue: #0b3d91;
+    --yellow: #ffb100;
+    --bg: #edf4ff;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --font-size: 16px;
+    --page-bg: #edf4ff;
+    --page-text: #1e293b;
+    --shadow: 0 12px 28px rgba(11, 61, 145, 0.10);
+    --border: #dbe4f0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    background: var(--page-bg);
+    color: var(--page-text);
+    font-size: var(--font-size);
+    transition: 0.3s;
+}
+
+body.dark-mode {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --page-bg: #0f172a;
+    --page-text: #f1f5f9;
+}
+
+/*
+    هذا الكونتينر الرئيسي للصفحة
+*/
+.map-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 28px 20px 40px;
+}
+
+.map-top {
+    margin-bottom: 18px;
+}
+
+.map-title-wrap h1 {
+    margin: 0 0 8px;
+    color: var(--blue);
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+body.dark-mode .map-title-wrap h1 {
+    color: #ffffff;
+}
+
+.map-title-wrap p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+body.dark-mode .map-title-wrap p {
+    color: #cbd5e1;
+}
+
+/*
+    هنا قسمنا الصفحة عمودين:
+    اللوحة الجانبية + الخريطة
+*/
+.map-layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+    min-height: 680px;
+}
+
+/* اللوحة الجانبية */
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    padding-left: 4px;
+}
+
+.cat-card {
+    background: var(--card);
+    padding: 18px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.25s ease;
+    box-shadow: var(--shadow);
+}
+
+.cat-card.active {
+    background: var(--blue);
+    color: white;
+    border-color: var(--yellow);
+}
+
+.cat-card i {
+    font-size: 22px;
+    color: var(--yellow);
+}
+
+.cat-card.active i {
+    color: white;
+}
+
+.panel-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.tool-btn {
+    border: none;
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 800;
+    background: var(--blue);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.tool-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.95;
+}
+
+.tool-btn.secondary {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.nearest-box {
+    background: linear-gradient(135deg, #0b3d91, #2563eb);
+    color: white;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+.nearest-box strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.nearest-box button {
+    margin-top: 10px;
+    border: none;
+    background: var(--yellow);
+    color: #111827;
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.results-list {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.place-item {
+    background: var(--card);
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.place-item:hover {
+    border-color: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+.place-item strong {
+    color: var(--blue);
+    font-size: 17px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+body.dark-mode .place-item strong {
+    color: #93c5fd;
+}
+
+.place-item p {
+    margin: 8px 0;
+    line-height: 1.8;
+    color: var(--text);
+}
+
+.stars {
+    color: #f1c40f;
+    font-weight: bold;
+    margin-top: 4px;
+    display: block;
+}
+
+.place-city {
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.place-meta,
+.place-category,
+.place-phone,
+.no-coords {
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.no-coords {
+    color: #dc2626;
+    font-weight: 700;
+}
+
+/* الخريطة */
+.map-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 680px;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    background: var(--card);
+}
+
+.search-container {
+    position: absolute;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 88%;
+    max-width: 560px;
+}
+
+.search-box {
+    background: white;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 8px 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    border: 2px solid var(--blue);
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    background: transparent;
+    color: #1e293b;
+}
+
+.search-box i {
+    color: var(--blue);
+    font-size: 20px;
+}
+
+#map {
+    width: 100%;
+    height: 680px;
+    z-index: 1;
+}
+
+/* رأس النتائج */
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 0 4px;
+    flex-wrap: wrap;
+}
+
+.results-header h3 {
+    margin: 0;
+    font-size: 18px;
+    color: var(--blue);
+    font-weight: 800;
+}
+
+.toggle-results-btn {
+    background: transparent;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toggle-results-btn:hover {
+    background: var(--blue);
+    color: #fff;
+}
+
+.empty-result {
+    text-align: center;
+    padding: 22px;
+    color: #999;
+    background: var(--card);
+    border-radius: 16px;
+}
+
+/* Popup */
+.map-popup h3 {
+    margin: 0 0 8px;
+    color: #0b3d91;
+    font-size: 17px;
+}
+
+.popup-line {
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #334155;
+}
+
+.popup-note {
+    margin: 10px 0;
+    padding: 8px 10px;
+    background: #eff6ff;
+    border-radius: 10px;
+    color: #1e3a8a;
+    font-size: 13px;
+}
+
+.popup-link {
+    display: inline-block;
+    margin-top: 10px;
+    background: #0b3d91;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Toast */
+.map-toast {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--blue);
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 999px;
+    z-index: 11000;
+    display: none;
+    font-weight: 800;
+    box-shadow: 0 12px 24px rgba(11,61,145,.22);
+}
+
+/* تابلت */
+@media (max-width: 1100px) {
+    .map-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .side-panel {
+        order: 2;
+    }
+
+    .map-wrapper {
+        order: 1;
+    }
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+    .map-page {
+        padding: 20px 14px 32px;
+    }
+
+    .map-title-wrap h1 {
+        font-size: 1.6rem;
+    }
+
+    .search-container {
+        width: 92%;
+        top: 16px;
+    }
+
+    .search-box {
+        padding: 8px 16px;
+    }
+
+    #map,
+    .map-wrapper {
+        min-height: 520px;
+        height: 520px;
+    }
+
+    .panel-tools {
+        flex-direction: column;
+    }
+
+    .tool-btn {
+        width: 100%;
+    }
+}
+
+/* موبايل صغير */
+@media (max-width: 520px) {
+    .map-page {
+        padding: 16px 10px 26px;
+    }
+
+    .map-title-wrap h1 {
+        font-size: 1.35rem;
+    }
+
+    .map-title-wrap p {
+        font-size: 0.92rem;
+    }
+
+    .cat-card {
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    .cat-card i {
+        font-size: 19px;
+    }
+
+    .place-item {
+        padding: 14px;
+    }
+
+    .place-item strong {
+        font-size: 15px;
+    }
+
+    .search-box input {
+        font-size: 14px;
+    }
+
+    #map,
+    .map-wrapper {
+        min-height: 430px;
+        height: 430px;
+        border-radius: 20px;
+    }
+
+    .results-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .toggle-results-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,312 @@
+/* ══════════════════════════════════════════════════════════════
+   admin_login.css
+   تصميم صفحة تسجيل دخول الأدمن — Unmute Platform
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── متغيرات الألوان (نفس ألوان المشروع) ── */
+:root {
+  --navy:       #0b3d91;
+  --navy2:      #1f5fc4;
+  --navy-dark:  #07296a;
+  --yellow:     #fdd835;
+  --white:      #ffffff;
+  --bg:         #edf4ff;
+  --txt:        #1a2744;
+  --muted:      #6b7a99;
+  --border:     rgba(11, 61, 145, 0.12);
+  --red:        #c62828;
+  --red-bg:     #fff1f1;
+  --shadow:     0 20px 60px rgba(11, 61, 145, 0.18);
+  --radius:     20px;
+  --tr:         0.25s ease;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 45%, #1050b8 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* ── الخلفية الزخرفية ── */
+.login-page { position: relative; width: 100%; display: flex; justify-content: center; }
+
+.bg-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+}
+.shape-1 { width: 600px; height: 600px; top: -200px; right: -180px; }
+.shape-2 { width: 350px; height: 350px; bottom: -100px; left: -80px; }
+.shape-3 { width: 200px; height: 200px; top: 40%; left: 20%; background: rgba(253,216,53,0.05); }
+
+/* ── بطاقة الدخول ── */
+.login-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 430px;
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 40px 36px 32px;
+  box-shadow: var(--shadow);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── الشعار ── */
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.brand img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.brand span {
+  font-size: 1.65rem;
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.5px;
+}
+
+/* ── بادج الدرع ── */
+.shield-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(11, 61, 145, 0.08);
+  color: var(--navy);
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── العنوان ── */
+h1 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--txt);
+  text-align: center;
+  margin-bottom: 7px;
+}
+
+.subtitle {
+  font-size: 0.83rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.65;
+  margin-bottom: 26px;
+}
+
+/* ── رسالة الخطأ ── */
+.error-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  background: var(--red-bg);
+  border: 1px solid rgba(198, 40, 40, 0.2);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  color: var(--red);
+  font-size: 0.83rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.error-box i { margin-top: 2px; flex-shrink: 0; }
+
+/* ── حقول النموذج ── */
+.login-form { display: flex; flex-direction: column; gap: 16px; }
+
+.field { display: flex; flex-direction: column; gap: 7px; }
+
+.field label {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--txt);
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f4f8ff;
+  border: 1.5px solid var(--border);
+  border-radius: 13px;
+  padding: 0 14px;
+  transition: border-color var(--tr), box-shadow var(--tr), background var(--tr);
+}
+
+.input-group:focus-within {
+  border-color: var(--navy2);
+  box-shadow: 0 0 0 3px rgba(31, 95, 196, 0.12);
+  background: var(--white);
+}
+
+.input-group > i {
+  color: var(--muted);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.input-group input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 13px 4px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.94rem;
+  color: var(--txt);
+  direction: auto;
+}
+
+.input-group input::placeholder { color: var(--muted); }
+
+/* زر إظهار كلمة المرور */
+.eye-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  padding: 4px 6px;
+  font-size: 0.88rem;
+  border-radius: 6px;
+  transition: color var(--tr), background var(--tr);
+}
+
+.eye-btn:hover {
+  color: var(--navy);
+  background: rgba(11, 61, 145, 0.06);
+}
+
+/* ── زر الدخول ── */
+.submit-btn {
+  width: 100%;
+  border: none;
+  border-radius: 13px;
+  background: linear-gradient(135deg, var(--navy), var(--navy2));
+  color: var(--white);
+  font-family: 'Cairo', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 4px;
+  transition: transform var(--tr), box-shadow var(--tr);
+  box-shadow: 0 6px 20px rgba(11, 61, 145, 0.28);
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(11, 61, 145, 0.36);
+}
+
+.submit-btn:active { transform: scale(0.98); }
+
+/* ── رابط العودة ── */
+.back-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 18px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--tr);
+}
+
+.back-link:hover { color: var(--navy); }
+
+/* ── قائمة الحسابات ── */
+.accounts-hint {
+  margin-top: 24px;
+  padding: 16px;
+  background: #f7f9ff;
+  border-radius: 13px;
+  border: 1px solid var(--border);
+}
+
+.accounts-title {
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.account-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(11, 61, 145, 0.06);
+}
+
+.account-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.account-row > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.account-row strong {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--txt);
+}
+
+.account-row span {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.super-tag {
+  font-size: 0.66rem;
+  font-weight: 900;
+  padding: 2px 9px;
+  border-radius: 10px;
+  background: rgba(253, 216, 53, 0.22);
+  color: #7a5c00;
+  white-space: nowrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .login-card { padding: 30px 20px 24px; }
+  h1 { font-size: 1.1rem; }
+}

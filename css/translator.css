@@ -1,0 +1,264 @@
+
+:root {
+    --primary: #0b3d91;
+    --primary-dark: #082d6c;
+    --accent: #ffb100;
+    --white: #ffffff;
+    --text: #1f2d3d;
+    --muted: #64748b;
+    --soft-bg: #f4f7f9;
+    --card-bg: #ffffff;
+    --board-bg: #f8fafc;
+    --board-border: #cbd5e1;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --page-bg: #edf4ff;
+    --page-text: #1f2d3d;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    background: var(--page-bg);
+    color: var(--page-text);
+    transition: 0.3s;
+}
+
+body.dark-mode {
+    background: #0f172a;
+    color: #ffffff;
+}
+
+.translator-page {
+    padding: 34px 20px 48px;
+}
+
+.translator-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.translator-card {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    border: 1px solid #e5edf7;
+}
+
+body.dark-mode .translator-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+.translator-head {
+    margin-bottom: 22px;
+}
+
+.translator-head h1 {
+    margin: 0 0 10px;
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+body.dark-mode .translator-head h1 {
+    color: #ffffff;
+}
+
+.translator-head p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+body.dark-mode .translator-head p {
+    color: #cbd5e1;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+}
+
+#textInput {
+    width: 100%;
+    max-width: 760px;
+    padding: 16px 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    font-size: 20px;
+    outline: none;
+    text-align: center;
+    font-family: 'Cairo', sans-serif;
+    background: #ffffff;
+    color: #1f2d3d;
+    transition: 0.2s ease;
+}
+
+#textInput:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(11, 61, 145, 0.08);
+}
+
+body.dark-mode #textInput {
+    background: #0f172a;
+    border-color: #334155;
+    color: #ffffff;
+}
+
+.control-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 22px 0 18px;
+}
+
+.btn {
+    padding: 11px 22px;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.98rem;
+    transition: 0.25s ease;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-mic {
+    background: #4f46e5;
+}
+
+.btn-cam {
+    background: #9333ea;
+}
+
+.btn-clear {
+    background: #ef4444;
+}
+
+.video-container {
+    display: none;
+    margin: 18px auto 0;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 4px solid var(--primary);
+    width: fit-content;
+    max-width: 100%;
+    background: #000;
+}
+
+#webCam {
+    width: 100%;
+    max-width: 460px;
+    display: block;
+}
+
+.result-board {
+    margin-top: 24px;
+    background: var(--board-bg);
+    border: 2px dashed var(--board-border);
+    border-radius: 20px;
+    min-height: 170px;
+    padding: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+body.dark-mode .result-board {
+    background: #0f172a;
+    border-color: #475569;
+}
+
+#placeholder {
+    color: var(--muted);
+    margin: 0;
+    font-size: 1rem;
+}
+
+body.dark-mode #placeholder {
+    color: #cbd5e1;
+}
+
+.sign-card {
+    animation: popIn 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-card img {
+    width: 88px;
+    height: 88px;
+    border-radius: 12px;
+    margin: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+    background: #fff;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .translator-page {
+        padding: 24px 14px 36px;
+    }
+
+    .translator-card {
+        padding: 22px 16px;
+        border-radius: 22px;
+    }
+
+    .translator-head h1 {
+        font-size: 1.6rem;
+    }
+
+    #textInput {
+        font-size: 17px;
+        padding: 14px;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .control-btns {
+        flex-direction: column;
+    }
+
+    .sign-card img {
+        width: 74px;
+        height: 74px;
+    }
+}

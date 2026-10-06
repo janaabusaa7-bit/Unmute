@@ -1,0 +1,317 @@
+:root {
+    --forget-bg: #edf4ff;
+    --forget-card: rgba(248, 249, 252, 0.96);
+    --forget-text: #1f2d3d;
+    --forget-muted: #66768a;
+    --forget-blue: #0b3d91;
+    --forget-blue-dark: #082c6c;
+    --forget-input-bg: #eef3fb;
+    --forget-input-focus: #ffffff;
+    --forget-success-bg: #e8f8ec;
+    --forget-success-text: #18794e;
+    --forget-error-bg: #ffe8e8;
+    --forget-error-text: #b42318;
+    --forget-shadow: 0 24px 60px rgba(11, 61, 145, 0.10);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Cairo", sans-serif;
+    background:
+        radial-gradient(circle at top right, rgba(46, 142, 255, 0.12), transparent 25%),
+        linear-gradient(180deg, #f4f8ff 0%, var(--page-bg, var(--forget-bg)) 100%);
+    color: var(--page-text, var(--forget-text));
+}
+
+/*
+    هذا هو المساحة الرئيسية للصفحة
+    جعلناه مرن ويتوسط الكارد دائمًا
+*/
+.forget-main {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 70px;
+}
+
+/*
+    كارد الصفحة
+    أعطيناه عرض مريح وحد أقصى حتى ما يتمدد كثير
+*/
+.forget-card {
+    width: 100%;
+    max-width: 560px;
+    background: var(--card-bg, var(--forget-card));
+    border-radius: 28px;
+    padding: 38px 34px 34px;
+    box-shadow: var(--forget-shadow);
+    text-align: center;
+    border: 1px solid rgba(11, 61, 145, 0.05);
+}
+
+.forget-top-icon {
+    margin-bottom: 14px;
+}
+
+.forget-top-icon i {
+    font-size: 25px;
+    color: var(--forget-blue);
+}
+
+.forget-card h1 {
+    margin: 0 0 12px;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--forget-blue);
+    line-height: 1.3;
+}
+
+.forget-subtitle {
+    margin: 0 auto 14px;
+    max-width: 460px;
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--forget-muted);
+}
+
+.forget-note {
+    margin: 0 auto 22px;
+    font-size: 14px;
+    color: var(--page-text, var(--forget-text));
+    line-height: 1.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.message-box {
+    width: 100%;
+    margin: 0 0 18px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.8;
+    text-align: center;
+    word-break: break-word;
+}
+
+.message-box.success {
+    background: var(--forget-success-bg);
+    color: var(--forget-success-text);
+}
+
+.message-box.error {
+    background: var(--forget-error-bg);
+    color: var(--forget-error-text);
+}
+
+.forget-form {
+    width: 100%;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.input-box input {
+    width: 100%;
+    min-height: 56px;
+    border: none;
+    outline: none;
+    border-radius: 16px;
+    background: var(--forget-input-bg);
+    color: var(--page-text, var(--forget-text));
+    font-size: 15px;
+    font-family: inherit;
+    transition: 0.25s ease;
+}
+
+html[dir="rtl"] .input-box input {
+    padding: 14px 50px 14px 18px;
+}
+
+html[dir="ltr"] .input-box input {
+    padding: 14px 18px 14px 50px;
+}
+
+.input-box input:focus {
+    background: var(--forget-input-focus);
+    box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.12);
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7c8796;
+    font-size: 17px;
+    pointer-events: none;
+}
+
+html[dir="rtl"] .input-icon {
+    right: 17px;
+}
+
+html[dir="ltr"] .input-icon {
+    left: 17px;
+}
+
+.forget-btn {
+    width: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    min-height: 54px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--forget-blue), #164ea6);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    font-family: inherit;
+    transition: 0.25s ease;
+    box-shadow: 0 12px 24px rgba(11, 61, 145, 0.16);
+}
+
+.forget-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.97;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--forget-blue);
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.back-link:hover {
+    color: var(--forget-blue-dark);
+    text-decoration: underline;
+}
+
+/* تابلت */
+@media (max-width: 768px) {
+    .forget-main {
+        padding: 110px 14px 40px;
+    }
+
+    .forget-card {
+        border-radius: 24px;
+        padding: 30px 18px 24px;
+    }
+
+    .forget-card h1 {
+        font-size: 27px;
+    }
+
+    .forget-subtitle,
+    .forget-note,
+    .message-box,
+    .back-link {
+        font-size: 13.5px;
+    }
+
+    .forget-btn,
+    .input-box input {
+        min-height: 52px;
+    }
+}
+
+/* موبايل متوسط */
+@media (max-width: 576px) {
+    .main-header {
+        flex-wrap: wrap;
+        padding: 12px 14px;
+        gap: 12px;
+    }
+
+    .main-nav {
+        width: 100%;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .forget-main {
+        padding: 98px 12px 28px;
+        min-height: calc(100vh - 140px);
+    }
+
+    .forget-card {
+        padding: 24px 14px 20px;
+        border-radius: 20px;
+    }
+
+    .forget-card h1 {
+        font-size: 23px;
+    }
+
+    .forget-subtitle {
+        font-size: 13px;
+        line-height: 1.8;
+    }
+
+    .forget-note {
+        font-size: 12.8px;
+        gap: 6px;
+    }
+
+    .forget-btn {
+        font-size: 15px;
+    }
+}
+
+/* موبايل صغير جدًا */
+@media (max-width: 380px) {
+    .forget-main {
+        padding: 90px 10px 24px;
+    }
+
+    .forget-card {
+        padding: 20px 12px 18px;
+    }
+
+    .forget-card h1 {
+        font-size: 21px;
+    }
+
+    .forget-top-icon i {
+        font-size: 22px;
+    }
+
+    .input-box input {
+        min-height: 50px;
+        font-size: 14px;
+    }
+
+    .forget-btn {
+        min-height: 50px;
+        font-size: 14px;
+    }
+
+    .back-link,
+    .message-box,
+    .forget-note,
+    .forget-subtitle {
+        font-size: 12.5px;
+    }
+}
